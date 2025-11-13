@@ -9,6 +9,16 @@ QAエンジニア（テスト担当者）向けの、**テスト設計・準備�
 
 ---
 
+## 画面遷移図
+
+本アプリケーションの画面遷移図はFigmaで作成しています。アプリケーションの全体像や各画面の構成、要素の配置については以下のリンクからご確認ください。
+
+**Figma URL:** [https://www.figma.com/design/DyBpQwkkYKXYKSWVwEtPwa/kaoshima-runteq-final-app?node-id=0-1&t=3tcXDoMnyTRuRgUo-1]
+
+※ Figmaファイルは閲覧権限を公開しています。
+
+---
+
 ## このサービスへの思い・作りたい理由
 
 私自身がQAエンジニアとして働く中で、日々のテスト業務には多くの「準備作業」が伴います。
