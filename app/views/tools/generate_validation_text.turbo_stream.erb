@@ -1,0 +1,47 @@
+<% if @char_count_results.any? %>
+  <%= turbo_stream.update "char-count-results" do %>
+    <div class="generated-results">
+      <h3 class="results-title">生成結果</h3>
+      <% @char_count_results.each do |result| %>
+        <div class="result-item">
+          <div class="result-header">
+            <div class="result-label"><%= result[:label] %></div>
+            <button type="button" class="btn btn-sm btn-copy" onclick="copyText(this)" data-text="<%= result[:text] %>">
+              コピー
+            </button>
+          </div>
+          <div class="result-text">
+            <%= result[:text].present? ? result[:text] : "(空文字)" %>
+          </div>
+          <div class="result-info">
+            文字数: <%= result[:text].length %>文字
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+<% if @char_type_results.any? %>
+  <%= turbo_stream.update "char-type-results" do %>
+    <div class="generated-results">
+      <h3 class="results-title">生成結果</h3>
+      <% @char_type_results.each do |result| %>
+        <div class="result-item">
+          <div class="result-header">
+            <div class="result-label"><%= result[:label] %></div>
+            <button type="button" class="btn btn-sm btn-copy" onclick="copyText(this)" data-text="<%= result[:text] %>">
+              コピー
+            </button>
+          </div>
+          <div class="result-text">
+            <%= result[:text].present? ? result[:text] : "(空文字)" %>
+          </div>
+          <div class="result-info">
+            文字数: <%= result[:text].length %>文字
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

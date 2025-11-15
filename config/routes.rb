@@ -10,5 +10,8 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  root "home#index"
+  root "tools#validation_text"
+  
+  # Tools routes
+  post "tools/generate_validation_text", to: "tools#generate_validation_text"
 end
