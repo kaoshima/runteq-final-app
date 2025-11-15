@@ -1,0 +1,64 @@
+<div class="validation-container">
+  <h1 class="page-title">バリデーションテキスト生成</h1>
+
+  <%= form_with url: tools_generate_validation_text_path, method: :post, data: { turbo_stream: true }, class: "validation-form" do |f| %>
+    
+    <!-- 文字数テスト -->
+    <div class="form-section">
+      <h2 class="section-title">文字数テスト</h2>
+      <p class="section-description">指定した文字数の境界値テストデータを生成します。</p>
+      
+      <div class="form-group">
+        <%= f.label :char_count, "文字数（上限値）", class: "form-label" %>
+        <%= f.number_field :char_count, min: 1, max: 10000, class: "form-input", placeholder: "例: 50" %>
+      </div>
+
+      <div class="button-group">
+        <%= f.submit "生成する", class: "btn btn-primary" %>
+      </div>
+
+      <!-- 文字数テストの結果表示エリア -->
+      <div id="char-count-results" class="section-results"></div>
+    </div>
+
+    <!-- 文字種テスト -->
+    <div class="form-section">
+      <h2 class="section-title">文字種テスト</h2>
+      <p class="section-description">指定した文字種の有効・無効なテストデータを生成します。</p>
+      
+      <div class="form-group">
+        <%= f.label :char_type, "文字種の仕様", class: "form-label" %>
+        <%= f.select :char_type, 
+          options_for_select([
+            ["選択してください", ""],
+            ["ひらがな", "hiragana"],
+            ["カタカナ", "katakana"],
+            ["半角英数", "alphanumeric"]
+          ]),
+          {},
+          class: "form-select"
+        %>
+      </div>
+
+      <div class="button-group">
+        <%= f.submit "生成する", class: "btn btn-primary" %>
+      </div>
+
+      <!-- 文字種テストの結果表示エリア -->
+      <div id="char-type-results" class="section-results"></div>
+    </div>
+
+    <!-- エッジケース -->
+    <div class="form-section">
+      <h2 class="section-title">エッジケース</h2>
+      <p class="section-description">特殊なケースのテストデータをワンクリックでコピーできます。</p>
+      
+      <div class="edge-case-buttons">
+        <%= button_tag "空文字（コピー）", type: "button", class: "btn btn-outline", onclick: "copyEmptyString()" %>
+        <%= button_tag "半角スペースのみ（コピー）", type: "button", class: "btn btn-outline", onclick: "copyHalfWidthSpace()" %>
+        <%= button_tag "全角スペースのみ（コピー）", type: "button", class: "btn btn-outline", onclick: "copyFullWidthSpace()" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>
