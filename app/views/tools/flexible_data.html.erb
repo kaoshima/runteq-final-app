@@ -1,0 +1,48 @@
+<div class="flexible-data-container">
+  <h1 class="page-title">柔軟なデータ生成</h1>
+  <p class="page-description">よく使う個人情報をワンクリックで生成・コピーします。</p>
+
+  <%= form_with url: tools_generate_flexible_data_path, method: :post, data: { turbo_stream: true }, class: "flexible-form" do |f| %>
+    
+    <div class="form-section">
+      <h2 class="section-title">プレフィックス（接頭語）</h2>
+      
+      <div class="form-group">
+        <%= f.text_field :prefix, placeholder: "例: user-", class: "form-input", value: "user-" %>
+        <p class="form-help">生成されるデータの先頭に付く文字列</p>
+      </div>
+
+      <h2 class="section-title">連番の桁数</h2>
+      
+      <div class="form-group">
+        <div class="digit-selector">
+          <%= f.radio_button :sequence_digits, 1, id: "digit_1", checked: false %>
+          <%= f.label :sequence_digits, "1", for: "digit_1", class: "digit-option" %>
+          
+          <%= f.radio_button :sequence_digits, 2, id: "digit_2", checked: false %>
+          <%= f.label :sequence_digits, "2", for: "digit_2", class: "digit-option" %>
+          
+          <%= f.radio_button :sequence_digits, 3, id: "digit_3", checked: true %>
+          <%= f.label :sequence_digits, "3", for: "digit_3", class: "digit-option" %>
+        </div>
+        <p class="form-help">1桁: user-1, 2桁: user-01, 3桁: user-001</p>
+      </div>
+
+      <h2 class="section-title">生成する件数</h2>
+      
+      <div class="form-group">
+        <%= f.number_field :count, min: 1, max: 1000, value: 10, class: "form-input form-input-small", placeholder: "10" %>
+        <p class="form-help">1〜1000件まで指定可能</p>
+      </div>
+
+      <div class="button-group">
+        <%= f.submit "生成する", class: "btn btn-primary" %>
+        <button type="button" class="btn btn-secondary" onclick="copyAllFlexibleData()">コピー</button>
+      </div>
+    </div>
+
+  <% end %>
+
+  <!-- 結果表示エリア -->
+  <div id="flexible-results" class="results-container"></div>
+</div>
