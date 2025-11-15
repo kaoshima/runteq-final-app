@@ -1,6 +1,10 @@
 # runteq-final-app
 卒業制作用のリポジトリ
 
+## デプロイURL
+
+**本番環境:** https://qa-toolkit-927bace5f0e3.herokuapp.com/
+
 ## サービス概要
 
 QAエンジニア（テスト担当者）向けの、**テスト設計・準備の効率化ツールキット**です。
