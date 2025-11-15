@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   
   # Tools routes
   post "tools/generate_validation_text", to: "tools#generate_validation_text"
+  get "tools/flexible_data", to: "tools#flexible_data"
+  post "tools/generate_flexible_data", to: "tools#generate_flexible_data"
 end

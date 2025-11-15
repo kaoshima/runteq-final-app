@@ -51,6 +51,32 @@ class ToolsController < ApplicationController
     end
   end
 
+  def flexible_data
+    # ビューを表示するだけ
+  end
+
+  def generate_flexible_data
+    prefix = params[:prefix].to_s
+    sequence_digits = params[:sequence_digits].to_i
+    count = params[:count].to_i
+
+    # バリデーション
+    if count <= 0 || count > 1000
+      @error = "生成する件数は1〜1000の範囲で指定してください"
+      @generated_data = []
+    elsif sequence_digits <= 0 || sequence_digits > 10
+      @error = "連番の桁数は1〜10の範囲で指定してください"
+      @generated_data = []
+    else
+      @generated_data = generate_sequence_data(prefix, sequence_digits, count)
+      @error = nil
+    end
+
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
   private
 
   def generate_text_by_count(count, char_type)
@@ -148,6 +174,12 @@ class ToolsController < ApplicationController
     when "half_width_space" then "半角スペース"
     when "full_width_space" then "全角スペース"
     else ""
+    end
+  end
+
+  def generate_sequence_data(prefix, digits, count)
+    (1..count).map do |i|
+      "#{prefix}#{i.to_s.rjust(digits, '0')}"
     end
   end
 end

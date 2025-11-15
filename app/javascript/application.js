@@ -74,3 +74,27 @@ window.copyFullWidthSpace = function() {
     showToast('コピーに失敗しました', 'error');
   });
 };
+
+// 柔軟なデータ生成用のコピー関数
+window.copyAllFlexibleData = function() {
+  const textarea = document.getElementById('all-data-textarea');
+  if (textarea) {
+    const text = textarea.value;
+    navigator.clipboard.writeText(text).then(() => {
+      showToast('すべてのデータをコピーしました');
+    }).catch(err => {
+      showToast('コピーに失敗しました', 'error');
+    });
+  }
+};
+
+window.copySingleData = function(button) {
+  const listItem = button.closest('.result-list-item');
+  const text = listItem.querySelector('.result-list-text').dataset.text;
+  
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('コピーしました: ' + text);
+  }).catch(err => {
+    showToast('コピーに失敗しました', 'error');
+  });
+};
