@@ -1,0 +1,173 @@
+<% if @error %>
+  <%= turbo_stream.update "analysis-results" do %>
+    <div class="error-message slideUp">
+      <strong>エラー:</strong> <%= @error %>
+    </div>
+  <% end %>
+<% else %>
+  <%= turbo_stream.update "analysis-results" do %>
+    <div class="analysis-results-container slideUp">
+      
+      <!-- 境界値分析 -->
+      <div class="result-section">
+        <h2 class="section-title">境界値分析</h2>
+        <p class="section-description">有効範囲の境界付近をテストする値</p>
+        
+        <div class="boundary-grid">
+          <div class="boundary-card boundary-card-invalid">
+            <div class="card-header">
+              <span class="card-badge badge-invalid">無効</span>
+              <h3 class="card-title">下限値 - 1</h3>
+            </div>
+            <div class="card-body">
+              <p class="card-value"><%= @boundary_values[:invalid_min_minus_1] %></p>
+              <p class="card-description">最小値より小さい値</p>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-secondary btn-small" onclick="copyBoundaryValue('<%= @boundary_values[:invalid_min_minus_1] %>')">
+                コピー
+              </button>
+            </div>
+          </div>
+
+          <div class="boundary-card boundary-card-valid">
+            <div class="card-header">
+              <span class="card-badge badge-valid">有効</span>
+              <h3 class="card-title">下限値</h3>
+            </div>
+            <div class="card-body">
+              <p class="card-value"><%= @boundary_values[:valid_min] %></p>
+              <p class="card-description">最小有効値</p>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-secondary btn-small" onclick="copyBoundaryValue('<%= @boundary_values[:valid_min] %>')">
+                コピー
+              </button>
+            </div>
+          </div>
+
+          <div class="boundary-card boundary-card-valid">
+            <div class="card-header">
+              <span class="card-badge badge-valid">有効</span>
+              <h3 class="card-title">下限値 + 1</h3>
+            </div>
+            <div class="card-body">
+              <p class="card-value"><%= @boundary_values[:valid_min_plus_1] %></p>
+              <p class="card-description">最小値より大きい値</p>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-secondary btn-small" onclick="copyBoundaryValue('<%= @boundary_values[:valid_min_plus_1] %>')">
+                コピー
+              </button>
+            </div>
+          </div>
+
+          <div class="boundary-card boundary-card-valid">
+            <div class="card-header">
+              <span class="card-badge badge-valid">有効</span>
+              <h3 class="card-title">上限値 - 1</h3>
+            </div>
+            <div class="card-body">
+              <p class="card-value"><%= @boundary_values[:valid_max_minus_1] %></p>
+              <p class="card-description">最大値より小さい値</p>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-secondary btn-small" onclick="copyBoundaryValue('<%= @boundary_values[:valid_max_minus_1] %>')">
+                コピー
+              </button>
+            </div>
+          </div>
+
+          <div class="boundary-card boundary-card-valid">
+            <div class="card-header">
+              <span class="card-badge badge-valid">有効</span>
+              <h3 class="card-title">上限値</h3>
+            </div>
+            <div class="card-body">
+              <p class="card-value"><%= @boundary_values[:valid_max] %></p>
+              <p class="card-description">最大有効値</p>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-secondary btn-small" onclick="copyBoundaryValue('<%= @boundary_values[:valid_max] %>')">
+                コピー
+              </button>
+            </div>
+          </div>
+
+          <div class="boundary-card boundary-card-invalid">
+            <div class="card-header">
+              <span class="card-badge badge-invalid">無効</span>
+              <h3 class="card-title">上限値 + 1</h3>
+            </div>
+            <div class="card-body">
+              <p class="card-value"><%= @boundary_values[:invalid_max_plus_1] %></p>
+              <p class="card-description">最大値より大きい値</p>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-secondary btn-small" onclick="copyBoundaryValue('<%= @boundary_values[:invalid_max_plus_1] %>')">
+                コピー
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 同値クラス分析 -->
+      <div class="result-section">
+        <h2 class="section-title">同値クラス分析</h2>
+        <p class="section-description">各グループを代表するテスト値</p>
+        
+        <div class="equivalence-grid">
+          <div class="equivalence-card equivalence-card-invalid">
+            <div class="card-header">
+              <span class="card-badge badge-invalid">無効</span>
+              <h3 class="card-title"><%= @equivalence_partitions[:invalid_below][:label] %></h3>
+            </div>
+            <div class="card-body">
+              <p class="card-value"><%= @equivalence_partitions[:invalid_below][:example] %></p>
+              <p class="card-description">有効範囲より小さい値</p>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-secondary btn-small" onclick="copyBoundaryValue('<%= @equivalence_partitions[:invalid_below][:example] %>')">
+                コピー
+              </button>
+            </div>
+          </div>
+
+          <div class="equivalence-card equivalence-card-valid">
+            <div class="card-header">
+              <span class="card-badge badge-valid">有効</span>
+              <h3 class="card-title"><%= @equivalence_partitions[:valid][:label] %></h3>
+            </div>
+            <div class="card-body">
+              <p class="card-value"><%= @equivalence_partitions[:valid][:example] %></p>
+              <p class="card-description">有効範囲内の中央値</p>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-secondary btn-small" onclick="copyBoundaryValue('<%= @equivalence_partitions[:valid][:example] %>')">
+                コピー
+              </button>
+            </div>
+          </div>
+
+          <div class="equivalence-card equivalence-card-invalid">
+            <div class="card-header">
+              <span class="card-badge badge-invalid">無効</span>
+              <h3 class="card-title"><%= @equivalence_partitions[:invalid_above][:label] %></h3>
+            </div>
+            <div class="card-body">
+              <p class="card-value"><%= @equivalence_partitions[:invalid_above][:example] %></p>
+              <p class="card-description">有効範囲より大きい値</p>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-secondary btn-small" onclick="copyBoundaryValue('<%= @equivalence_partitions[:invalid_above][:example] %>')">
+                コピー
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  <% end %>
+<% end %>

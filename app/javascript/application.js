@@ -123,3 +123,13 @@ window.copyDummyResult = function(label) {
     console.error('Failed to copy:', err);
   });
 };
+
+// テストクラス分析用のコピー関数
+window.copyBoundaryValue = function(value) {
+  navigator.clipboard.writeText(value).then(() => {
+    showToast(`コピーしました: ${value}`);
+  }).catch(err => {
+    showToast('コピーに失敗しました', 'error');
+    console.error('Failed to copy:', err);
+  });
+};

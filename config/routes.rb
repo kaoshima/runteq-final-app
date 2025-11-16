@@ -21,4 +21,6 @@ Rails.application.routes.draw do
   post "tools/generate_email", to: "tools#generate_email"
   post "tools/generate_phone", to: "tools#generate_phone"
   post "tools/generate_address", to: "tools#generate_address"
+  get "tools/test_class_analysis", to: "tools#test_class_analysis"
+  post "tools/analyze_boundary", to: "tools#analyze_boundary"
 end

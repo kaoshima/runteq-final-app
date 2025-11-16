@@ -1,0 +1,33 @@
+<div class="test-class-container">
+  <h1 class="page-title">テストクラス分析サポート</h1>
+  <p class="page-description">下限値と上限値を入力すると、テストすべき境界値と同値クラスをリストアップします。</p>
+
+  <%= form_with url: tools_analyze_boundary_path, method: :post, data: { turbo_stream: true }, class: "analysis-form" do |f| %>
+    
+    <div class="form-section">
+      <h2 class="section-title">境界値分析の設定</h2>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <%= f.label :min_value, "下限値（必須）", class: "form-label" %>
+          <%= f.text_field :min_value, placeholder: "例: 1", class: "form-input form-input-medium" %>
+          <p class="form-help">テスト対象の最小値を入力</p>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :max_value, "上限値（必須）", class: "form-label" %>
+          <%= f.text_field :max_value, placeholder: "例: 100", class: "form-input form-input-medium" %>
+          <p class="form-help">テスト対象の最大値を入力</p>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <%= f.submit "分析する", class: "btn btn-primary btn-large" %>
+      </div>
+    </div>
+
+  <% end %>
+
+  <!-- 結果表示エリア -->
+  <div id="analysis-results"></div>
+</div>
