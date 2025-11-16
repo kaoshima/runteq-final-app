@@ -1,0 +1,52 @@
+<div class="simple-dummy-container">
+  <h1 class="page-title">シンプルなダミーデータ生成</h1>
+  <p class="page-description">よく使う個人情報をワンクリックで生成・コピーします。</p>
+
+  <!-- 姓名を生成 -->
+  <div class="dummy-section">
+    <h2 class="dummy-section-title">姓名を生成</h2>
+    <div class="dummy-actions">
+      <%= button_to "生成する", tools_generate_name_path, method: :post, data: { turbo_stream: true }, class: "btn btn-primary" %>
+      <button type="button" class="btn btn-secondary" onclick="copyDummyResult('姓名')">コピー</button>
+    </div>
+    <div id="dummy-result-姓名" class="dummy-result-placeholder">
+      <p class="placeholder-text">「生成する」ボタンをクリックしてください</p>
+    </div>
+  </div>
+
+  <!-- メールアドレスを生成 -->
+  <div class="dummy-section">
+    <h2 class="dummy-section-title">メールアドレスを生成</h2>
+    <div class="dummy-actions">
+      <%= button_to "生成する", tools_generate_email_path, method: :post, data: { turbo_stream: true }, class: "btn btn-primary" %>
+      <button type="button" class="btn btn-secondary" onclick="copyDummyResult('メールアドレス')">コピー</button>
+    </div>
+    <div id="dummy-result-メールアドレス" class="dummy-result-placeholder">
+      <p class="placeholder-text">「生成する」ボタンをクリックしてください</p>
+    </div>
+  </div>
+
+  <!-- 電話番号を生成 -->
+  <div class="dummy-section">
+    <h2 class="dummy-section-title">電話番号を生成</h2>
+    <div class="dummy-actions">
+      <%= button_to "生成する", tools_generate_phone_path, method: :post, data: { turbo_stream: true }, class: "btn btn-primary" %>
+      <button type="button" class="btn btn-secondary" onclick="copyDummyResult('電話番号')">コピー</button>
+    </div>
+    <div id="dummy-result-電話番号" class="dummy-result-placeholder">
+      <p class="placeholder-text">「生成する」ボタンをクリックしてください</p>
+    </div>
+  </div>
+
+  <!-- 住所を生成 -->
+  <div class="dummy-section">
+    <h2 class="dummy-section-title">住所を生成</h2>
+    <div class="dummy-actions">
+      <%= button_to "生成する", tools_generate_address_path, method: :post, data: { turbo_stream: true }, class: "btn btn-primary" %>
+      <button type="button" class="btn btn-secondary" onclick="copyDummyResult('住所')">コピー</button>
+    </div>
+    <div id="dummy-result-住所" class="dummy-result-placeholder">
+      <p class="placeholder-text">「生成する」ボタンをクリックしてください</p>
+    </div>
+  </div>
+</div>

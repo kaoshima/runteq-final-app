@@ -77,6 +77,44 @@ class ToolsController < ApplicationController
     end
   end
 
+  def simple_dummy
+    # ビューを表示するだけ
+  end
+
+  def generate_name
+    Faker::Config.locale = :ja
+    @result = Faker::Name.name
+    render_dummy_result("姓名", @result)
+  end
+
+  def generate_email
+    @result = Faker::Internet.email
+    render_dummy_result("メールアドレス", @result)
+  end
+
+  def generate_phone
+    # テスト用の電話番号を生成（実在しない番号）
+    # 日本の総務省が割り当てていない番号帯を使用
+    # 020-で始まる番号は一部のみ使用されているため、テスト用として使用
+    area_code = "020"
+    exchange = rand(1000..9999)
+    subscriber = rand(1000..9999)
+    @result = "#{area_code}-#{exchange}-#{subscriber}"
+    render_dummy_result("電話番号", @result)
+  end
+
+  def generate_address
+    Faker::Config.locale = :ja
+    prefecture = Faker::Address.state
+    city = Faker::Address.city
+    # 番地のみを生成（建物名や名前を含まない）
+    building_number = Faker::Number.between(from: 1, to: 30)
+    chome = Faker::Number.between(from: 1, to: 10)
+    ban = Faker::Number.between(from: 1, to: 20)
+    @result = "#{prefecture}#{city}#{chome}-#{ban}-#{building_number}"
+    render_dummy_result("住所", @result)
+  end
+
   private
 
   def generate_text_by_count(count, char_type)
@@ -180,6 +218,18 @@ class ToolsController < ApplicationController
   def generate_sequence_data(prefix, digits, count)
     (1..count).map do |i|
       "#{prefix}#{i.to_s.rjust(digits, '0')}"
+    end
+  end
+
+  def render_dummy_result(label, result)
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(
+          "dummy-result-#{label}",
+          partial: "tools/dummy_result",
+          locals: { label: label, result: result, target_id: "dummy-result-#{label}" }
+        )
+      end
     end
   end
 end

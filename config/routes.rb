@@ -16,4 +16,9 @@ Rails.application.routes.draw do
   post "tools/generate_validation_text", to: "tools#generate_validation_text"
   get "tools/flexible_data", to: "tools#flexible_data"
   post "tools/generate_flexible_data", to: "tools#generate_flexible_data"
+  get "tools/simple_dummy", to: "tools#simple_dummy"
+  post "tools/generate_name", to: "tools#generate_name"
+  post "tools/generate_email", to: "tools#generate_email"
+  post "tools/generate_phone", to: "tools#generate_phone"
+  post "tools/generate_address", to: "tools#generate_address"
 end

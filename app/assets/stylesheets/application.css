@@ -518,6 +518,112 @@ body {
   border-color: #2563eb;
 }
 
+/* シンプルなダミーデータ生成ページのスタイル */
+.simple-dummy-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dummy-section {
+  background: white;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dummy-section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e40af;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.dummy-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.dummy-result-placeholder {
+  padding: 2rem;
+  background-color: #f8fafc;
+  border: 2px dashed #cbd5e1;
+  border-radius: 8px;
+  text-align: center;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder-text {
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+.dummy-result-box {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border: 2px solid #2563eb;
+  border-radius: 8px;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-in;
+  transition: all 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dummy-result-content {
+  width: 100%;
+}
+
+.dummy-result-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e40af;
+  text-align: center;
+  word-break: break-all;
+  line-height: 1.6;
+}
+
+.dummy-actions .btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.dummy-actions .btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.dummy-actions .btn:active::before {
+  width: 300px;
+  height: 300px;
+}
+
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
   .main-container {
@@ -580,5 +686,25 @@ body {
     right: 1rem;
     left: 1rem;
     max-width: none;
+  }
+
+  .simple-dummy-container {
+    padding: 1rem;
+  }
+
+  .dummy-section {
+    padding: 1.5rem;
+  }
+
+  .dummy-actions {
+    flex-direction: column;
+  }
+
+  .dummy-actions .btn {
+    width: 100%;
+  }
+
+  .dummy-result-text {
+    font-size: 1.1rem;
   }
 }
