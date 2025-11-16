@@ -1,0 +1,105 @@
+<div class="static-page-container">
+  <div class="static-page-header">
+    <h1 class="static-page-title">プライバシーポリシー</h1>
+    <p class="static-page-updated">最終更新日: <%= Date.today.strftime("%Y年%m月%d日") %></p>
+  </div>
+
+  <div class="static-page-content">
+    <section class="content-section">
+      <h2 class="section-heading">個人情報の取り扱いについて</h2>
+      <p class="section-text">
+        QA-ToolKit（以下、「当サービス」といいます。）は、ユーザーの個人情報の取り扱いについて、以下のとおりプライバシーポリシーを定めます。
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-heading">第1条（個人情報の定義）</h2>
+      <p class="section-text">
+        「個人情報」とは、個人情報保護法にいう「個人情報」を指すものとし、生存する個人に関する情報であって、
+        当該情報に含まれる氏名、生年月日、住所、電話番号、連絡先その他の記述等により特定の個人を識別できる情報を指します。
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-heading">第2条（個人情報の収集方法）</h2>
+      <p class="section-text">
+        当サービスは、基本的にユーザーの個人情報を収集しません。
+        当サービスは登録不要で、アクセスログ以外の情報を保存することはありません。
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-heading">第3条（アクセスログについて）</h2>
+      <p class="section-text">
+        当サービスでは、サービスの改善とセキュリティ確保のため、以下のアクセスログを収集する場合があります。
+      </p>
+      <ul class="section-list">
+        <li>アクセス日時</li>
+        <li>IPアドレス</li>
+        <li>ブラウザの種類とバージョン</li>
+        <li>参照元URL</li>
+        <li>アクセスしたページのURL</li>
+      </ul>
+      <p class="section-text">
+        これらの情報は統計的な分析のみに使用され、個人を特定するために使用されることはありません。
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-heading">第4条（Cookieについて）</h2>
+      <p class="section-text">
+        当サービスでは、サービスの利便性向上のためにCookieを使用することがあります。
+        Cookieとは、Webサーバーからユーザーのブラウザに送信される小さなテキストファイルで、ユーザーのコンピュータに保存されます。
+      </p>
+      <p class="section-text">
+        Cookieの使用を希望されない場合は、ブラウザの設定でCookieを無効にすることができます。
+        ただし、Cookieを無効にした場合、サービスの一部機能が正常に動作しない可能性があります。
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-heading">第5条（生成されたデータについて）</h2>
+      <p class="section-text">
+        当サービスで生成されたテストデータやダミーデータは、サーバー上に保存されません。
+        すべての生成処理はリアルタイムで行われ、ページを離れると自動的に削除されます。
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-heading">第6条（第三者への提供）</h2>
+      <p class="section-text">
+        当サービスは、法令に基づく場合を除き、ユーザーの同意なく個人情報を第三者に提供することはありません。
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-heading">第7条（セキュリティ）</h2>
+      <p class="section-text">
+        当サービスは、個人情報の漏洩、滅失またはき損の防止その他の個人情報の安全管理のために必要かつ適切な措置を講じます。
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-heading">第8条（プライバシーポリシーの変更）</h2>
+      <p class="section-text">
+        本ポリシーの内容は、法令その他本ポリシーに別段の定めのある事項を除いて、ユーザーに通知することなく変更することができるものとします。
+        変更後のプライバシーポリシーは、当サービス上に掲載された時点から効力を生じるものとします。
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-heading">第9条（お問い合わせ窓口）</h2>
+      <p class="section-text">
+        本ポリシーに関するお問い合わせは、<%= link_to "お問い合わせページ", contact_path, class: "inline-link" %>からお願いいたします。
+      </p>
+    </section>
+
+    <div class="content-footer">
+      <p>以上</p>
+    </div>
+  </div>
+
+  <div class="static-page-actions">
+    <%= link_to "トップページへ戻る", root_path, class: "btn btn-primary" %>
+  </div>
+</div>

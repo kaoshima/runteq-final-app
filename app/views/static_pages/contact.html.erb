@@ -1,0 +1,89 @@
+<div class="static-page-container">
+  <div class="static-page-header">
+    <h1 class="static-page-title">お問い合わせ</h1>
+    <p class="static-page-subtitle">サービスに関するご質問やご要望がございましたら、お気軽にお問い合わせください。</p>
+  </div>
+
+  <div class="static-page-content">
+    <section class="content-section">
+      <h2 class="section-heading">お問い合わせ方法</h2>
+      <p class="section-text">
+        QA-ToolKitに関するお問い合わせは、以下のフォームから受け付けております。
+        ご質問、ご要望、不具合報告など、お気軽にお送りください。
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-heading">お問い合わせフォーム</h2>
+      <p class="section-text">
+        下記のボタンからGoogleフォームを開いてお問い合わせください。
+        匿名でのお問い合わせも可能です。
+      </p>
+      <div class="contact-card">
+        <div class="contact-card-icon form-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+          </svg>
+        </div>
+        <div class="contact-card-content">
+          <h3 class="contact-card-title">Googleフォーム</h3>
+          <p class="contact-card-text">フォームからお問い合わせください（匿名可）</p>
+          <a href="https://forms.gle/np6CrU2BDCGcHFXWA" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+            お問い合わせフォームを開く
+            <svg xmlns="http://www.w3.org/2000/svg" class="external-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-heading">お問い合わせの際のお願い</h2>
+      <ul class="section-list">
+        <li>お問い合わせの際は、できるだけ具体的な内容をご記載ください</li>
+        <li>バグ報告の場合は、再現手順や発生環境（ブラウザ、OS等）をお知らせください</li>
+        <li>機能要望の場合は、どのような場面でその機能が必要なのかをお知らせください</li>
+        <li>回答までにお時間をいただく場合がございます</li>
+      </ul>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-heading">よくある質問</h2>
+      
+      <div class="faq-item">
+        <h3 class="faq-question">Q. 生成したデータは保存されますか？</h3>
+        <p class="faq-answer">
+          A. いいえ、保存されません。すべてのデータはブラウザ上でリアルタイムに生成され、
+          サーバーに送信・保存されることはありません。
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="faq-question">Q. 利用に料金はかかりますか？</h3>
+        <p class="faq-answer">
+          A. 完全無料でご利用いただけます。今後も無料での提供を継続する予定です。
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="faq-question">Q. 商用利用は可能ですか？</h3>
+        <p class="faq-answer">
+          A. はい、商用利用も可能です。業務でのテストデータ生成などに自由にご利用ください。
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="faq-question">Q. 新しい機能のリクエストはできますか？</h3>
+        <p class="faq-answer">
+          A. はい、GitHubのIssueから機能要望をお送りください。
+          可能な範囲で対応させていただきます。
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <div class="static-page-actions">
+    <%= link_to "トップページへ戻る", root_path, class: "btn btn-primary" %>
+  </div>
+</div>
