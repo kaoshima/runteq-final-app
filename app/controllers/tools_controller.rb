@@ -115,6 +115,45 @@ class ToolsController < ApplicationController
     render_dummy_result("住所", @result)
   end
 
+  def test_class_analysis
+    # ビューを表示するだけ
+  end
+
+  def analyze_boundary
+    min_value = params[:min_value].to_s.strip
+    max_value = params[:max_value].to_s.strip
+
+    # バリデーション
+    if min_value.blank? || max_value.blank?
+      @error = "下限値と上限値の両方を入力してください"
+      @boundary_values = nil
+      @equivalence_partitions = nil
+    elsif !numeric?(min_value) || !numeric?(max_value)
+      @error = "数値を入力してください"
+      @boundary_values = nil
+      @equivalence_partitions = nil
+    elsif min_value.to_f >= max_value.to_f
+      @error = "下限値は上限値より小さい値を入力してください"
+      @boundary_values = nil
+      @equivalence_partitions = nil
+    else
+      min = min_value.to_f
+      max = max_value.to_f
+      
+      # 境界値分析
+      @boundary_values = calculate_boundary_values(min, max)
+      
+      # 同値クラス分析
+      @equivalence_partitions = calculate_equivalence_partitions(min, max)
+      
+      @error = nil
+    end
+
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
   private
 
   def generate_text_by_count(count, char_type)
@@ -231,5 +270,82 @@ class ToolsController < ApplicationController
         )
       end
     end
+  end
+
+  def numeric?(value)
+    true if Float(value) rescue false
+  end
+
+  def calculate_boundary_values(min, max)
+    # 整数か小数かを判定
+    is_integer = (min == min.to_i && max == max.to_i)
+    
+    if is_integer
+      min = min.to_i
+      max = max.to_i
+      {
+        valid_min: min,
+        valid_min_plus_1: min + 1,
+        valid_max_minus_1: max - 1,
+        valid_max: max,
+        invalid_min_minus_1: min - 1,
+        invalid_max_plus_1: max + 1
+      }
+    else
+      {
+        valid_min: format_number(min),
+        valid_min_plus_1: format_number(min + 0.01),
+        valid_max_minus_1: format_number(max - 0.01),
+        valid_max: format_number(max),
+        invalid_min_minus_1: format_number(min - 0.01),
+        invalid_max_plus_1: format_number(max + 0.01)
+      }
+    end
+  end
+
+  def calculate_equivalence_partitions(min, max)
+    is_integer = (min == min.to_i && max == max.to_i)
+    
+    if is_integer
+      min = min.to_i
+      max = max.to_i
+      middle = (min + max) / 2
+      
+      {
+        invalid_below: {
+          label: "無効（下限未満）",
+          example: min - 10
+        },
+        valid: {
+          label: "有効（範囲内）",
+          example: middle
+        },
+        invalid_above: {
+          label: "無効（上限超過）",
+          example: max + 10
+        }
+      }
+    else
+      middle = (min + max) / 2.0
+      
+      {
+        invalid_below: {
+          label: "無効（下限未満）",
+          example: format_number(min - 10.0)
+        },
+        valid: {
+          label: "有効（範囲内）",
+          example: format_number(middle)
+        },
+        invalid_above: {
+          label: "無効（上限超過）",
+          example: format_number(max + 10.0)
+        }
+      }
+    end
+  end
+
+  def format_number(num)
+    num.to_s.include?('.') ? num.round(2) : num.to_i
   end
 end

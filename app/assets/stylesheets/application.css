@@ -708,3 +708,223 @@ body {
     font-size: 1.1rem;
   }
 }
+
+/* ===========================
+   テストクラス分析
+=========================== */
+.test-class-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.analysis-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-input-medium {
+  padding: 0.75rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-input-medium:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-help {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+/* 結果表示エリア */
+.analysis-results-container {
+  animation: slideUp 0.4s ease-out;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.test-class-container .result-section {
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.test-class-container .section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e40af;
+  margin-bottom: 0.5rem;
+}
+
+.test-class-container .section-description {
+  color: #64748b;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+/* 境界値グリッド */
+.boundary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.boundary-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.boundary-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.boundary-card-valid {
+  border-color: #34a853;
+  background: linear-gradient(135deg, #f0f9f4 0%, #e8f5e9 100%);
+}
+
+.boundary-card-invalid {
+  border-color: #ea4335;
+  background: linear-gradient(135deg, #fef5f4 0%, #fee 100%);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.card-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-valid {
+  background: #34a853;
+  color: white;
+}
+
+.badge-invalid {
+  background: #ea4335;
+  color: white;
+}
+
+.card-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #555;
+  margin: 0;
+}
+
+.card-body {
+  margin-bottom: 1rem;
+}
+
+.card-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0.5rem 0;
+  font-family: 'Monaco', 'Courier New', monospace;
+}
+
+.card-description {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: center;
+}
+
+/* 同値クラスグリッド */
+.equivalence-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.equivalence-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.equivalence-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.equivalence-card-valid {
+  border-color: #4285f4;
+  background: linear-gradient(135deg, #f0f4ff 0%, #e3f2fd 100%);
+}
+
+.equivalence-card-invalid {
+  border-color: #fbbc04;
+  background: linear-gradient(135deg, #fffbf0 0%, #fff8e1 100%);
+}
+
+/* エラーメッセージ */
+.error-message {
+  background: linear-gradient(135deg, #fee 0%, #ffebee 100%);
+  border: 2px solid #ea4335;
+  border-radius: 12px;
+  padding: 1.5rem;
+  color: #c62828;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  animation: slideUp 0.4s ease-out;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 1024px) {
+  .boundary-grid,
+  .equivalence-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .boundary-grid,
+  .equivalence-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-value {
+    font-size: 1.5rem;
+  }
+}
