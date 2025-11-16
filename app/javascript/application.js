@@ -98,3 +98,28 @@ window.copySingleData = function(button) {
     showToast('コピーに失敗しました', 'error');
   });
 };
+
+// シンプルなダミーデータのコピー関数
+window.copyDummyResult = function(label) {
+  const targetId = `dummy-result-${label}`;
+  const resultBox = document.getElementById(targetId);
+  
+  if (!resultBox) {
+    showToast('データが生成されていません', 'error');
+    return;
+  }
+
+  const result = resultBox.dataset.result;
+  
+  if (!result) {
+    showToast('データが生成されていません', 'error');
+    return;
+  }
+
+  navigator.clipboard.writeText(result).then(() => {
+    showToast(`${label}をコピーしました: ${result}`);
+  }).catch(err => {
+    showToast('コピーに失敗しました', 'error');
+    console.error('Failed to copy:', err);
+  });
+};
