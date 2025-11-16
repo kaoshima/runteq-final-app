@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "tools#validation_text"
-  
+
   # Tools routes
   post "tools/generate_validation_text", to: "tools#generate_validation_text"
   get "tools/flexible_data", to: "tools#flexible_data"

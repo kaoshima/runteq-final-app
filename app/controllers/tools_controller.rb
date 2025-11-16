@@ -17,13 +17,13 @@ class ToolsController < ApplicationController
         label: "有効（#{char_count}文字）",
         text: generate_text_by_count(char_count, char_type.presence || "hiragana")
       }
-      
+
       # 無効値（指定文字数+1）
       @char_count_results << {
         label: "無効（#{char_count + 1}文字）",
         text: generate_text_by_count(char_count + 1, char_type.presence || "hiragana")
       }
-      
+
       # 境界値-1（指定文字数-1）
       if char_count > 1
         @char_count_results << {
@@ -40,7 +40,7 @@ class ToolsController < ApplicationController
         label: "有効な文字種（#{char_type_label(char_type)}）",
         text: valid_text
       }
-      
+
       # 無効な文字種のサンプルを生成
       invalid_samples = generate_invalid_char_samples(char_count > 0 ? char_count : 10, char_type)
       @char_type_results.concat(invalid_samples)
@@ -139,13 +139,13 @@ class ToolsController < ApplicationController
     else
       min = min_value.to_f
       max = max_value.to_f
-      
+
       # 境界値分析
       @boundary_values = calculate_boundary_values(min, max)
-      
+
       # 同値クラス分析
       @equivalence_partitions = calculate_equivalence_partitions(min, max)
-      
+
       @error = nil
     end
 
@@ -158,7 +158,7 @@ class ToolsController < ApplicationController
 
   def generate_text_by_count(count, char_type)
     return "" if count <= 0
-    
+
     case char_type
     when "hiragana"
       hiragana_chars = ("あ".."ん").to_a
@@ -181,7 +181,7 @@ class ToolsController < ApplicationController
 
   def generate_char_type_text(count, char_type)
     return "" if count <= 0
-    
+
     case char_type
     when "hiragana"
       hiragana_chars = ("あ".."ん").to_a
@@ -203,43 +203,43 @@ class ToolsController < ApplicationController
 
   def generate_invalid_char_samples(count, valid_char_type)
     samples = []
-    
+
     case valid_char_type
     when "hiragana"
       katakana_chars = ("ア".."ン").to_a
-      samples << { 
-        label: "無効な文字種（カタカナ）", 
-        text: count.times.map { katakana_chars.sample }.join 
+      samples << {
+        label: "無効な文字種（カタカナ）",
+        text: count.times.map { katakana_chars.sample }.join
       }
       alphanumeric_chars = ("a".."z").to_a + ("A".."Z").to_a
-      samples << { 
-        label: "無効な文字種（半角英数）", 
-        text: count.times.map { alphanumeric_chars.sample }.join 
+      samples << {
+        label: "無効な文字種（半角英数）",
+        text: count.times.map { alphanumeric_chars.sample }.join
       }
     when "katakana"
       hiragana_chars = ("あ".."ん").to_a
-      samples << { 
-        label: "無効な文字種（ひらがな）", 
-        text: count.times.map { hiragana_chars.sample }.join 
+      samples << {
+        label: "無効な文字種（ひらがな）",
+        text: count.times.map { hiragana_chars.sample }.join
       }
       alphanumeric_chars = ("a".."z").to_a + ("A".."Z").to_a
-      samples << { 
-        label: "無効な文字種（半角英数）", 
-        text: count.times.map { alphanumeric_chars.sample }.join 
+      samples << {
+        label: "無効な文字種（半角英数）",
+        text: count.times.map { alphanumeric_chars.sample }.join
       }
     when "alphanumeric"
       hiragana_chars = ("あ".."ん").to_a
-      samples << { 
-        label: "無効な文字種（ひらがな）", 
-        text: count.times.map { hiragana_chars.sample }.join 
+      samples << {
+        label: "無効な文字種（ひらがな）",
+        text: count.times.map { hiragana_chars.sample }.join
       }
       symbol_chars = "!@#$%^&*()".chars
-      samples << { 
-        label: "無効な文字種（記号）", 
-        text: count.times.map { symbol_chars.sample }.join 
+      samples << {
+        label: "無効な文字種（記号）",
+        text: count.times.map { symbol_chars.sample }.join
       }
     end
-    
+
     samples
   end
 
@@ -279,7 +279,7 @@ class ToolsController < ApplicationController
   def calculate_boundary_values(min, max)
     # 整数か小数かを判定
     is_integer = (min == min.to_i && max == max.to_i)
-    
+
     if is_integer
       min = min.to_i
       max = max.to_i
@@ -305,12 +305,12 @@ class ToolsController < ApplicationController
 
   def calculate_equivalence_partitions(min, max)
     is_integer = (min == min.to_i && max == max.to_i)
-    
+
     if is_integer
       min = min.to_i
       max = max.to_i
       middle = (min + max) / 2
-      
+
       {
         invalid_below: {
           label: "無効（下限未満）",
@@ -327,7 +327,7 @@ class ToolsController < ApplicationController
       }
     else
       middle = (min + max) / 2.0
-      
+
       {
         invalid_below: {
           label: "無効（下限未満）",
@@ -346,6 +346,6 @@ class ToolsController < ApplicationController
   end
 
   def format_number(num)
-    num.to_s.include?('.') ? num.round(2) : num.to_i
+    num.to_s.include?(".") ? num.round(2) : num.to_i
   end
 end
