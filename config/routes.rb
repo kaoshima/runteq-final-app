@@ -23,4 +23,9 @@ Rails.application.routes.draw do
   post "tools/generate_address", to: "tools#generate_address"
   get "tools/test_class_analysis", to: "tools#test_class_analysis"
   post "tools/analyze_boundary", to: "tools#analyze_boundary"
+
+  # Static pages
+  get "terms", to: "static_pages#terms"
+  get "privacy", to: "static_pages#privacy"
+  get "contact", to: "static_pages#contact"
 end
